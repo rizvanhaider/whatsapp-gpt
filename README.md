@@ -18,4 +18,4 @@ npm install
 
 create a ``` .env ``` file like ``` .example.env ``` and place your openAI token
 
-create a ``` contacts.json``` similar as ``` example.contacts.json```` and insert the phone numbers in array to whome you like to auto respond.
+create a ``` contacts.json``` similar as ``` example.contacts.json``` and insert the phone numbers in array to whome you like to auto respond.
