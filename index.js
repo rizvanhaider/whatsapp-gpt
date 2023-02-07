@@ -2,7 +2,7 @@ require('dotenv').config();
 const qrcode = require("qrcode-terminal");
 const fs = require("fs");
 const { Client } = require("whatsapp-web.js");
-const client = new Client();
+const client = new Client({ puppeteer: { headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']} });
 
 const { Configuration, OpenAIApi } = require("openai");
 
