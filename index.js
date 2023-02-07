@@ -1,3 +1,4 @@
+require('dotenv').config();
 const qrcode = require("qrcode-terminal");
 const fs = require("fs");
 const { Client } = require("whatsapp-web.js");
@@ -11,7 +12,7 @@ let context = {};
 
 const configuration = new Configuration({
     // replace your openai token below.
-  apiKey: "sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  apiKey: process.env.OPENAIA_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
