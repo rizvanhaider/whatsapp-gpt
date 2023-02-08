@@ -1,6 +1,8 @@
 require('dotenv').config();
 const qrcode = require("qrcode-terminal");
 const fs = require("fs");
+const contactsServer = require('./update-contacts');
+
 const { Client } = require("whatsapp-web.js");
 const client = new Client({ puppeteer: { headless: true,args: ['--no-sandbox', '--disable-setuid-sandbox']} });
 
@@ -29,7 +31,7 @@ client.on("message", async (message) => {
   var msg = message;
 
   const contacts = await contactsToAutoRespond(CONTACTS_FILE);
-  const isContact = contacts.filter((contact) => contact === message.from);
+  const isContact = contacts.filter((contact) => contact === message.from.split('@')[0]);
   if (message.from == isContact[0]) {
     try {
       console.log(message.from + " > " + message.body);
@@ -52,6 +54,8 @@ client.on("message", async (message) => {
 });
 
 client.initialize();
+contactsServer;
+
 
 async function askChatGPT(from, q) {
   context[from] === undefined
