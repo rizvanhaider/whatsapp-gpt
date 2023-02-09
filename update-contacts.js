@@ -4,6 +4,9 @@ const app = express();
 const port = 3351;
 
 app.use(express.json());
+app.use(cors({
+  origin: '*'
+}));
 
 app.delete('/contact/:contact', async (req, res) => {
 
