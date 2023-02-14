@@ -29,12 +29,13 @@ client.on("ready", () => {
 
 client.on("message", async (message) => {
   var msg = message;
-
   const contacts = await contactsToAutoRespond(CONTACTS_FILE);
-  const isContact = contacts.filter((contact) => contact === message.from.split('@')[0]);
-  if (message.from == isContact[0]) {
+  const isContact = contacts.filter((contact) => {
+    return contact === message.from.split('@')[0];
+  });
+  if (message.from.split('@')[0] == isContact) {
     try {
-      console.log(message.from + " > " + message.body);
+      
 
       askChatGPT(message.from, message.body).then(function (resp) {
         context[message.from] = context[message.from] + "\n" + resp;
