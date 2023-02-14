@@ -14,17 +14,17 @@ app.delete('/contact/:contact', async (req, res) => {
   const { contact } = req.params;
   let contacts = await getAllContacts();
   contacts.splice(contacts.indexOf(contact), 1);
-  fs.writeFileSync('data.json', JSON.stringify(contacts));
-  res.send(`Successfully deleted contact "${contact}"`);
+  fs.writeFileSync('contacts.json', JSON.stringify(contacts));
+  res.send(`Deleted contact "${contact}"`);
 
 });
 
-app.post('/contact', async (req, res) => {
+app.post('/contact/:contact', async (req, res) => {
   let contacts = await getAllContacts();
-  const { contact } = req.body;
+  const { contact } = req.params;
   contacts.push(contact);
   console.log(contacts);
-  fs.writeFileSync('data.json', JSON.stringify(contacts));
+  fs.writeFileSync('contacts.json', JSON.stringify(contacts));
   res.send(`Successfully added "${contact}"`);
 });
 
