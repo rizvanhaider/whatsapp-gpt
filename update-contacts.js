@@ -30,7 +30,12 @@ app.post('/contact/:contact', async (req, res) => {
 
 app.get('/contact', async (req, res) => {
   let contacts = await getAllContacts();
-  res.send(JSON.stringify(contacts));
+  res.setHeader("Content-Type", "text/html");
+  let resp = ``;
+  for(let c of contacts) {
+    resp = resp + `<h1> ${c} </h1>`
+  }
+  res.send(resp);
 });
 
 
